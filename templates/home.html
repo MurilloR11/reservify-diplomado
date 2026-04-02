@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}Reservify — Gestión de reservas y comandas{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+{% endblock %}
+
+{% block body %}
+<header class="site-header">
+  <div class="container nav-wrap">
+    <div class="nav-start">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+      <a href="#hero" class="brand-logo">Reservify</a>
+    </div>
+
+    <nav class="nav-main" aria-label="Principal">
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#que-es">Qué es</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#mision-vision">Misión y visión</a></li>
+        <li><a href="#objetivo-general">Objetivo</a></li>
+        <li><a href="#objetivos-especificos">Objetivos</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-end">
+      <a href="#que-es" class="btn btn-primary btn-sm">Comenzar</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero" data-aos="fade-up">
+    <div class="hero-orbs" aria-hidden="true">
+      <span class="orb orb-a"></span>
+      <span class="orb orb-b"></span>
+      <span class="orb orb-c"></span>
+      <span class="orb orb-d"></span>
+    </div>
+    <div class="container hero-inner" data-aos="zoom-out" data-aos-delay="80">
+      <p class="hero-eyebrow">
+        <span class="dot"></span>
+        Plataforma para restaurantes
+      </p>
+      <h1 class="hero-title">
+        Gestiona tu restaurante<br />
+        <span>con control total</span>
+      </h1>
+      <p class="hero-subtitle">
+        Gestiona reservas y comandas en tu restaurante de forma simple, rápida y profesional.
+      </p>
+      <a href="#que-es" class="btn btn-primary btn-lg">
+        Descubrir más
+        <span data-lucide="arrow-down" class="icon"></span>
+      </a>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span data-lucide="chevron-down" class="icon"></span>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="que-es" data-aos="fade-up">
+    <div class="container two-col">
+      <div class="left-col" data-aos="fade-up" data-aos-delay="80">
+        <h2 class="section-title">
+          Digitaliza tu restaurante<br />
+          <span>sin complicaciones</span>
+        </h2>
+        <p class="section-copy">
+          Reservify centraliza reservas y comandas en un solo lugar para que tu equipo trabaje con claridad, reduzca errores manuales y mantenga el servicio siempre fluido.
+        </p>
+        <div class="cta-row">
+          <a href="#" class="btn btn-primary btn-lg cta-arrow">
+            Crear cuenta gratis
+            <span>→</span>
+          </a>
+          <small>Sin tarjeta de crédito</small>
+        </div>
+      </div>
+
+      <div class="right-col" data-aos="fade-up" data-aos-delay="120">
+        <article class="feature-card" data-aos="fade-up" data-aos-delay="140">
+          <p class="feature-number">01</p>
+          <div>
+            <h3>Gestión de Reservas</h3>
+            <p>Organiza turnos, mesas y disponibilidad desde un panel único y siempre actualizado.</p>
+            <span class="tag">Tiempo real</span>
+          </div>
+        </article>
+
+        <article class="feature-card offset" data-aos="fade-up" data-aos-delay="200">
+          <p class="feature-number">02</p>
+          <div>
+            <h3>Control de Comandas</h3>
+            <p>Conecta sala y cocina para que cada pedido llegue correcto y en el momento indicado.</p>
+            <span class="tag">Sin errores</span>
+          </div>
+        </article>
+
+        <article class="feature-card" data-aos="fade-up" data-aos-delay="260">
+          <p class="feature-number">03</p>
+          <div>
+            <h3>Mejora del Servicio</h3>
+            <p>Obtén visibilidad operativa para decidir rápido y elevar la experiencia del cliente.</p>
+            <span class="tag">Datos accionables</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-base" id="stack" data-aos="fade-up">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up" data-aos-delay="60">
+        <p class="eyebrow text-only">Base tecnológica</p>
+        <h2 class="section-title center">
+          Tecnología sólida<br />
+          <span>para crecer sin fricción</span>
+        </h2>
+        <p class="section-intro">Herramientas que mantienen la plataforma estable, rápida y fácil de evolucionar.</p>
+      </div>
+
+      <div class="tech-grid" data-aos="fade-up" data-aos-delay="100">
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="120">
+          <span class="tech-icon" data-lucide="code-2"></span>
+          <h3>Python</h3>
+          <p>Lenguaje base del backend y la lógica de negocio.</p>
+        </article>
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="150">
+          <span class="tech-icon" data-lucide="flask-conical"></span>
+          <h3>Flask</h3>
+          <p>Framework web ligero para rutas, vistas y APIs.</p>
+        </article>
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="180">
+          <span class="tech-icon" data-lucide="file-code"></span>
+          <h3>HTML</h3>
+          <p>Estructura semántica de las pantallas.</p>
+        </article>
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="210">
+          <span class="tech-icon" data-lucide="palette"></span>
+          <h3>CSS</h3>
+          <p>Estilos, layout y diseño responsive.</p>
+        </article>
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="240">
+          <span class="tech-icon" data-lucide="braces"></span>
+          <h3>JavaScript</h3>
+          <p>Interactividad en el navegador cuando haga falta.</p>
+        </article>
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="270">
+          <span class="tech-icon" data-lucide="layers"></span>
+          <h3>Jinja2</h3>
+          <p>Plantillas reutilizables junto a Flask.</p>
+        </article>
+        <article class="tech-card" data-aos="zoom-in" data-aos-delay="300">
+          <span class="tech-icon" data-lucide="database"></span>
+          <h3>MySQL</h3>
+          <p>Motor relacional robusto para datos transaccionales en producción.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-base border-sides" id="mision-vision" data-aos="fade-up">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up" data-aos-delay="60">
+        <p class="eyebrow text-only">Fundamentos</p>
+        <h2 class="section-title center">
+          Misión y visión<br />
+          <span>que guían Reservify</span>
+        </h2>
+      </div>
+
+      <div class="mv-grid">
+        <article class="mv-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="mv-top">
+            <span class="mv-icon" data-lucide="target"></span>
+            <h3>Misión</h3>
+          </div>
+          <p>Simplificar la operación de restaurantes ofreciendo una herramienta web clara y confiable para gestionar reservas y comandas, priorizando la experiencia del personal y la trazabilidad de cada pedido.</p>
+        </article>
+        <article class="mv-card" data-aos="fade-up" data-aos-delay="180">
+          <div class="mv-top">
+            <span class="mv-icon" data-lucide="eye"></span>
+            <h3>Visión</h3>
+          </div>
+          <p>Ser una referencia en soluciones accesibles para la hostelería, demostrando que un stack moderno y bien estructurado puede resolver problemas reales sin sacrificar mantenibilidad ni claridad.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="objetivo-general" data-aos="fade-up">
+    <div class="container">
+      <article class="goal-card" data-aos="zoom-in-up" data-aos-delay="100">
+        <div>
+          <p class="eyebrow text-only">Dirección estratégica</p>
+          <h2 class="section-title">
+            Objetivo general<br />
+            <span>de Reservify</span>
+          </h2>
+          <p class="section-copy">
+            Desarrollar una plataforma web integral para administrar reservas y comandas en restaurantes, mejorando la organización interna y la calidad del servicio al cliente mediante procesos digitales coherentes y fáciles de adoptar.
+          </p>
+        </div>
+        <aside class="goal-side">
+          <p class="eyebrow text-only">Resultado esperado</p>
+          <ul>
+            <li>Operación diaria más ordenada y trazable en sala y cocina.</li>
+            <li>Menos errores manuales y mejor tiempo de respuesta al cliente.</li>
+            <li>Base tecnológica clara para crecer sin perder mantenibilidad.</li>
+          </ul>
+        </aside>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-base border-sides" id="objetivos-especificos" data-aos="fade-up">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up" data-aos-delay="60">
+        <p class="eyebrow text-only">Hoja de ruta</p>
+        <h2 class="section-title center">
+          Objetivos específicos<br />
+          <span>para ejecutar con foco</span>
+        </h2>
+        <p class="section-intro">Metas concretas que guían el desarrollo del proyecto.</p>
+      </div>
+
+      <div class="obj-grid">
+        <article class="obj-card" data-aos="fade-up" data-aos-delay="120">
+          <p class="obj-number">01</p>
+          <h3>Modelar el dominio</h3>
+          <p>Definir entidades y relaciones para reservas, mesas y comandas de forma coherente con el negocio.</p>
+          <span class="tag">Base sólida</span>
+        </article>
+        <article class="obj-card" data-aos="fade-up" data-aos-delay="170">
+          <p class="obj-number">02</p>
+          <h3>Interfaz usable</h3>
+          <p>Diseñar pantallas responsive y legibles para uso diario en sala y administración.</p>
+          <span class="tag">UX clara</span>
+        </article>
+        <article class="obj-card" data-aos="fade-up" data-aos-delay="220">
+          <p class="obj-number">03</p>
+          <h3>Persistencia fiable</h3>
+          <p>Implementar almacenamiento en MySQL con consultas claras y datos consistentes.</p>
+          <span class="tag">Datos consistentes</span>
+        </article>
+        <article class="obj-card" data-aos="fade-up" data-aos-delay="270">
+          <p class="obj-number">04</p>
+          <h3>Buenas prácticas</h3>
+          <p>Versionar el código y mantener una base Flask modular y mantenible.</p>
+          <span class="tag">Escalable</span>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-aos="fade-up" data-aos-delay="80">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-brand">Reservify</p>
+      <p class="footer-copy">Gestión simple de reservas y comandas.</p>
+    </div>
+    <div class="footer-meta">
+      <p>© 2026 Reservify</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.querySelector("[data-nav-toggle]");
+    var menu = document.getElementById("nav-menu");
+    if (!toggle || !menu) return;
+    toggle.addEventListener("click", function () {
+      var isOpen = menu.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  })();
+</script>
+
+{% endblock %}

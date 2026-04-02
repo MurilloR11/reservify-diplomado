@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Reservify{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    {% block styles %}{% endblock %}
+  </head>
+  <body>
+    {% block body %}{% endblock %}
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script>
+      lucide.createIcons();
+      AOS.init({
+        duration: 700,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 60
+      });
+    </script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

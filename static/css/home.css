@@ -484,6 +484,10 @@ section,
   border-color: var(--primary-20);
 }
 
+.goal-card + .section-head {
+  margin-top: 2.4rem;
+}
+
 .goal-side {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);

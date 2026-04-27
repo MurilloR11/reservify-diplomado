@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}IA - Reservify{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ia.css') }}" />
+{% endblock %}
+
+{% block body %}
+<header class="ia-topbar">
+  <div class="ia-shell">
+    <a href="{{ url_for('home') }}" class="ia-brand">
+      <span class="ia-brand-dot"></span>
+      Reservify IA
+    </a>
+    <a href="{{ url_for('home') }}" class="ia-back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Volver al inicio
+    </a>
+  </div>
+</header>
+
+<main class="ia-main">
+  <div class="ia-shell ia-layout">
+    <aside class="ia-sidebar">
+      <div class="ia-card">
+        <p class="ia-kicker">Asistente operativo</p>
+        <h1>Panel IA</h1>
+        <p class="ia-copy">
+          Haz consultas rápidas sobre reservas, operación diaria y atención al cliente.
+        </p>
+      </div>
+
+      <div class="ia-card">
+        <h2>Sugerencias</h2>
+        <div class="ia-prompts">
+          <button type="button" class="quick-prompt" data-prompt="¿Cómo organizo mejor mis turnos de reservas para hoy?">
+            Organizar turnos de reservas
+          </button>
+          <button type="button" class="quick-prompt" data-prompt="Dame una respuesta profesional para confirmar una reserva por WhatsApp.">
+            Mensaje de confirmación
+          </button>
+          <button type="button" class="quick-prompt" data-prompt="¿Qué indicadores debería revisar para mejorar el servicio del restaurante?">
+            Indicadores recomendados
+          </button>
+        </div>
+      </div>
+
+    </aside>
+
+    <section class="chat-container">
+      <div class="chat-header">
+        <div class="chat-avatar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+        </div>
+        <div class="chat-title-wrap">
+          <h2 class="chat-title">Asistente IA</h2>
+          <p class="chat-subtitle">Interfaz conversacional para soporte operativo</p>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message message-ai">
+          <div class="message-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+          </div>
+          <div class="message-content">
+            <p>Hola, soy tu asistente de IA. Estoy listo para ayudarte con reservas, operación y experiencia de cliente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-wrap">
+        <div class="chat-input-container">
+          <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="Escribe tu mensaje..."
+            autocomplete="off"
+          />
+          <button class="chat-send-btn" id="chatSendBtn" aria-label="Enviar mensaje">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="{{ url_for('static', filename='js/ia.js') }}"></script>
+{% endblock %}

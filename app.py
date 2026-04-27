@@ -8,5 +8,10 @@ def home():
     return render_template("home.html")
 
 
+@app.route("/ia")
+def ia():
+    return render_template("IA.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

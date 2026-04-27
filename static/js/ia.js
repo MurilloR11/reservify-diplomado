@@ -43,21 +43,62 @@
     return messageDiv;
   }
 
-  function sendUserMessage(rawText) {
+  function appendMessage(text, role) {
+    chatMessages.appendChild(createMessage(text, role));
+    scrollToBottom();
+  }
+
+  async function askBackend(message) {
+    const response = await fetch("/api/ia/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+
+    const data = await response.json().catch(function () {
+      return {};
+    });
+
+    if (!response.ok) {
+      throw new Error(data.error || "No se pudo obtener respuesta del asistente.");
+    }
+
+    return data.reply || "No hubo respuesta del asistente.";
+  }
+
+  async function sendUserMessage(rawText) {
     const text = rawText.trim();
     if (!text) return;
 
-    chatMessages.appendChild(createMessage(text, "user"));
+    appendMessage(text, "user");
     chatInput.value = "";
+
+    const typingMessage = createMessage("Escribiendo...", "ai");
+    chatMessages.appendChild(typingMessage);
     scrollToBottom();
-    chatInput.focus();
+
+    try {
+      chatInput.disabled = true;
+      chatSendBtn.disabled = true;
+
+      const reply = await askBackend(text);
+      typingMessage.remove();
+      appendMessage(reply, "ai");
+    } catch (error) {
+      typingMessage.remove();
+      appendMessage(error.message, "ai");
+    } finally {
+      chatInput.disabled = false;
+      chatSendBtn.disabled = false;
+      chatInput.focus();
+    }
   }
 
-  chatSendBtn.addEventListener("click", function () {
+  chatSendBtn.addEventListener("click", async function () {
     sendUserMessage(chatInput.value);
   });
 
-  chatInput.addEventListener("keydown", function (event) {
+  chatInput.addEventListener("keydown", async function (event) {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       sendUserMessage(chatInput.value);

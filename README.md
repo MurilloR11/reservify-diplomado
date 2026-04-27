@@ -29,6 +29,7 @@ Actualmente implementa una landing page moderna y responsive que presenta la pro
 ### Backend (Python)
 - **Flask**: framework web principal.
 - **Jinja2**: motor de plantillas (usado por Flask).
+- **GPT4All**: integración de IA local para el chat en `/ia`.
 
 ### Frontend (CDN)
 - **AOS (Animate On Scroll)**  
@@ -88,9 +89,9 @@ reservify-diplomado/
      .\venv\Scripts\Activate.ps1
      ```
 2. Instalar dependencias:
-   ```bash
-   pip install flask
-   ```
+    ```bash
+   pip install flask gpt4all
+    ```
 3. Ejecutar la app:
    ```bash
    python app.py
@@ -101,3 +102,30 @@ reservify-diplomado/
 ---
 
 Proyecto base orientado a evolucionar hacia una plataforma completa de operación para restaurantes.
+
+## Configurar GPT4All para el chat IA
+
+El chat de la vista `/ia` ahora consulta un endpoint Flask (`POST /api/ia/chat`) que usa GPT4All en local.
+
+El backend usa esta logica:
+
+```python
+SYSTEM_PROMPT = (
+    "Eres un asistente virtual de la plataforma educativa Edunexo. "
+    "Solo respondes en espanol, de forma breve (maximo 2 o 3 oraciones). "
+    "No saludes ni te presentes al inicio. Simplemente responde la pregunta del usuario "
+    "sin generar preguntas adicionales ni ejemplos de conversacion."
+)
+
+def get_model():
+    global _model
+    if _model is None:
+        _model = GPT4All("Meta-Llama-3-8B-Instruct.Q4_0.gguf")
+    return _model
+
+def generate_response(message, max_tokens=256):
+    model = get_model()
+    with model.chat_session(system_prompt=SYSTEM_PROMPT):
+        response = model.generate(message, max_tokens=max_tokens)
+    return response
+```

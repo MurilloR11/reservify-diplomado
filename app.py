@@ -1,11 +1,12 @@
 import os
 
 import click
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 from flask_migrate import Migrate
 from gpt4all import GPT4All
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from middleware import register_role_middleware, resolve_home_endpoint_by_role
 from models import ROLE_ADMIN, ROLE_CLIENTE, Usuario, db
 
 app = Flask(__name__)
@@ -45,6 +46,9 @@ def generate_response(message, max_tokens=256):
     return response
 
 
+register_role_middleware(app)
+
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -53,6 +57,22 @@ def home():
 @app.route("/ia")
 def ia():
     return render_template("IA.html")
+
+
+@app.route("/cliente")
+def cliente():
+    return render_template("cliente.html")
+
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
+@app.post("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 
 @app.route("/registro", methods=["GET", "POST"])
@@ -115,14 +135,10 @@ def login():
                 message_type="error",
             )
 
-        return render_template(
-            "login.html",
-            message=(
-                f"Inicio de sesion correcto. Bienvenido, {usuario.nombre}. "
-                f"Rol: {usuario.rol}."
-            ),
-            message_type="success",
-        )
+        session["user_id"] = usuario.id
+        session["user_role"] = usuario.rol
+        session["user_name"] = usuario.nombre
+        return redirect(url_for(resolve_home_endpoint_by_role(usuario.rol)))
 
     return render_template("login.html")
 

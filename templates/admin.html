@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Reservify{% endblock %}
+
+{% block body %}
+<h1>Bienvenido admin</h1>
+<form method="post" action="{{ url_for('logout') }}">
+  <button type="submit">Cerrar sesion</button>
+</form>
+{% endblock %}

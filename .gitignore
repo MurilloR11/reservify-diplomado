@@ -66,3 +66,7 @@ desktop.ini
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Carpetas solicitadas
+middleware/
+migrations/

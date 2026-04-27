@@ -35,6 +35,16 @@ def ia():
     return render_template("IA.html")
 
 
+@app.route("/registro")
+def registro():
+    return render_template("registro.html")
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
 @app.post("/api/ia/chat")
 def ia_chat():
     payload = request.get_json(silent=True) or {}

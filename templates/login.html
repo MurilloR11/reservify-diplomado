@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar sesion - Reservify{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}" />
+{% endblock %}
+
+{% block body %}
+<main class="auth-main">
+  <div class="auth-shell">
+    <section class="auth-panel auth-panel-info">
+      <a href="{{ url_for('home') }}" class="brand-link">
+        <span class="brand-dot"></span>
+        Reservify
+      </a>
+      <p class="auth-kicker">Acceso empresarial</p>
+      <h1>Bienvenido de nuevo</h1>
+      <p>
+        Inicia sesion para continuar con la gestion de tu restaurante en un entorno ordenado y eficiente.
+      </p>
+      <div class="panel-badges">
+        <span><i data-lucide="sparkles"></i> Experiencia limpia</span>
+        <span><i data-lucide="clock-3"></i> Flujo rapido</span>
+      </div>
+    </section>
+
+    <section class="auth-panel auth-panel-form">
+      <div class="panel-head">
+        <h2>Iniciar sesion</h2>
+        <p>Accede con tus credenciales.</p>
+      </div>
+
+      <form class="auth-form" autocomplete="off">
+        <label class="field">
+          <span>Correo</span>
+          <div class="input-wrap">
+            <i data-lucide="mail"></i>
+            <input type="email" placeholder="nombre@restaurante.com" />
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Contrasena</span>
+          <div class="input-wrap">
+            <i data-lucide="lock-keyhole"></i>
+            <input type="password" data-password-input placeholder="Tu contrasena" />
+            <button type="button" class="password-toggle" data-password-toggle aria-label="Mostrar contrasena">
+              <i data-password-icon data-lucide="eye"></i>
+            </button>
+          </div>
+        </label>
+
+        <button type="button" class="auth-btn">Entrar</button>
+      </form>
+
+      <p class="auth-switch">
+        ¿No tienes cuenta?
+        <a href="{{ url_for('registro') }}">Crear cuenta</a>
+      </p>
+    </section>
+  </div>
+</main>
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

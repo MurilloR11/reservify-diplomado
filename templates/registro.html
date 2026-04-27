@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Registro - Reservify{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}" />
+{% endblock %}
+
+{% block body %}
+<main class="auth-main">
+  <div class="auth-shell">
+    <section class="auth-panel auth-panel-info">
+      <a href="{{ url_for('home') }}" class="brand-link">
+        <span class="brand-dot"></span>
+        Reservify
+      </a>
+      <p class="auth-kicker">Acceso empresarial</p>
+      <h1>Crea tu cuenta profesional</h1>
+      <p>
+        Empieza con una cuenta nueva para gestionar reservas y comandas desde un panel moderno y claro.
+      </p>
+      <div class="panel-badges">
+        <span><i data-lucide="shield-check"></i> Seguridad</span>
+        <span><i data-lucide="layout-dashboard"></i> Operación centralizada</span>
+      </div>
+    </section>
+
+    <section class="auth-panel auth-panel-form">
+      <div class="panel-head">
+        <h2>Registro</h2>
+        <p>Completa los datos para crear tu cuenta.</p>
+      </div>
+
+      <form class="auth-form" autocomplete="off">
+        <label class="field">
+          <span>Nombre completo</span>
+          <div class="input-wrap">
+            <i data-lucide="user-round"></i>
+            <input type="text" placeholder="Ej. Camila Martinez" />
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Correo corporativo</span>
+          <div class="input-wrap">
+            <i data-lucide="mail"></i>
+            <input type="email" placeholder="nombre@restaurante.com" />
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Contrasena</span>
+          <div class="input-wrap">
+            <i data-lucide="lock-keyhole"></i>
+            <input type="password" data-password-input placeholder="Minimo 8 caracteres" />
+            <button type="button" class="password-toggle" data-password-toggle aria-label="Mostrar contrasena">
+              <i data-password-icon data-lucide="eye"></i>
+            </button>
+          </div>
+        </label>
+
+        <button type="button" class="auth-btn">Crear cuenta gratis</button>
+      </form>
+
+      <p class="auth-switch">
+        ¿Ya tienes cuenta?
+        <a href="{{ url_for('login') }}">Inicia sesion</a>
+      </p>
+    </section>
+  </div>
+</main>
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

@@ -31,12 +31,16 @@
         <p>Accede con tus credenciales.</p>
       </div>
 
-      <form class="auth-form" autocomplete="off">
+      {% if message %}
+      <div class="auth-alert auth-alert-{{ message_type or 'error' }}">{{ message }}</div>
+      {% endif %}
+
+      <form class="auth-form" method="post" action="{{ url_for('login') }}" autocomplete="off">
         <label class="field">
           <span>Correo</span>
           <div class="input-wrap">
             <i data-lucide="mail"></i>
-            <input type="email" placeholder="nombre@restaurante.com" />
+            <input type="email" name="email" placeholder="nombre@restaurante.com" />
           </div>
         </label>
 
@@ -44,14 +48,14 @@
           <span>Contrasena</span>
           <div class="input-wrap">
             <i data-lucide="lock-keyhole"></i>
-            <input type="password" data-password-input placeholder="Tu contrasena" />
+            <input type="password" name="password" data-password-input placeholder="Tu contrasena" />
             <button type="button" class="password-toggle" data-password-toggle aria-label="Mostrar contrasena">
               <i data-password-icon data-lucide="eye"></i>
             </button>
           </div>
         </label>
 
-        <button type="button" class="auth-btn">Entrar</button>
+        <button type="submit" class="auth-btn">Entrar</button>
       </form>
 
       <p class="auth-switch">

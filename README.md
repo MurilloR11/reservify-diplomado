@@ -30,6 +30,9 @@ Actualmente implementa una landing page moderna y responsive que presenta la pro
 - **Flask**: framework web principal.
 - **Jinja2**: motor de plantillas (usado por Flask).
 - **GPT4All**: integración de IA local para el chat en `/ia`.
+- **Flask-SQLAlchemy**: ORM para MySQL.
+- **Flask-Migrate**: migraciones de esquema con Alembic.
+- **PyMySQL**: driver para conexión a MySQL.
 
 ### Frontend (CDN)
 - **AOS (Animate On Scroll)**  
@@ -90,7 +93,7 @@ reservify-diplomado/
      ```
 2. Instalar dependencias:
     ```bash
-   pip install flask gpt4all
+   pip install flask gpt4all flask-sqlalchemy flask-migrate pymysql
     ```
 3. Ejecutar la app:
    ```bash
@@ -128,4 +131,42 @@ def generate_response(message, max_tokens=256):
     with model.chat_session(system_prompt=SYSTEM_PROMPT):
         response = model.generate(message, max_tokens=max_tokens)
     return response
+```
+
+## Base de datos MySQL (phpMyAdmin) y migraciones
+
+La aplicación usa MySQL con una sola tabla: `usuarios`.
+Roles soportados en `usuarios.rol` (tipo `ENUM`):
+- `cliente` (registro normal)
+- `admin` (solo puede crearlo otro admin)
+
+Configuración de conexión por defecto:
+
+```text
+mysql+pymysql://root:@localhost/reservify
+```
+
+Si necesitas cambiar credenciales, usa variable de entorno:
+
+```powershell
+$env:DATABASE_URL="mysql+pymysql://USUARIO:CLAVE@localhost/reservify"
+```
+
+Comandos de migración:
+
+```powershell
+$env:FLASK_APP="app.py"
+python -m flask db init
+python -m flask db migrate -m "create usuarios table"
+python -m flask db upgrade
+```
+
+Registro público:
+- La ruta `/registro` siempre crea usuarios con rol `cliente`.
+
+Crear admin (solo por otro admin):
+
+```powershell
+$env:FLASK_APP="app.py"
+python -m flask create-admin --creator-email "admin@tuapp.com" --creator-password "CLAVE_ADMIN" --nombre "Nuevo Admin" --email "nuevo.admin@tuapp.com" --password "CLAVE_NUEVA"
 ```

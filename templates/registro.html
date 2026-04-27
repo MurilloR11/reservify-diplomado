@@ -31,12 +31,16 @@
         <p>Completa los datos para crear tu cuenta.</p>
       </div>
 
-      <form class="auth-form" autocomplete="off">
+      {% if message %}
+      <div class="auth-alert auth-alert-{{ message_type or 'error' }}">{{ message }}</div>
+      {% endif %}
+
+      <form class="auth-form" method="post" action="{{ url_for('registro') }}" autocomplete="off">
         <label class="field">
           <span>Nombre completo</span>
           <div class="input-wrap">
             <i data-lucide="user-round"></i>
-            <input type="text" placeholder="Ej. Camila Martinez" />
+            <input type="text" name="nombre" placeholder="Ej. Camila Martinez" />
           </div>
         </label>
 
@@ -44,7 +48,7 @@
           <span>Correo corporativo</span>
           <div class="input-wrap">
             <i data-lucide="mail"></i>
-            <input type="email" placeholder="nombre@restaurante.com" />
+            <input type="email" name="email" placeholder="nombre@restaurante.com" />
           </div>
         </label>
 
@@ -52,14 +56,14 @@
           <span>Contrasena</span>
           <div class="input-wrap">
             <i data-lucide="lock-keyhole"></i>
-            <input type="password" data-password-input placeholder="Minimo 8 caracteres" />
+            <input type="password" name="password" data-password-input placeholder="Minimo 8 caracteres" />
             <button type="button" class="password-toggle" data-password-toggle aria-label="Mostrar contrasena">
               <i data-password-icon data-lucide="eye"></i>
             </button>
           </div>
         </label>
 
-        <button type="button" class="auth-btn">Crear cuenta gratis</button>
+        <button type="submit" class="auth-btn">Crear cuenta gratis</button>
       </form>
 
       <p class="auth-switch">
